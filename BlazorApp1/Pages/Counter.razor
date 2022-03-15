@@ -1,0 +1,35 @@
+﻿@page "/counter"
+@using Syncfusion.Blazor.Inputs
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+   <input @bind="Count" @bind:event="oninput" />
+<p role="status">Updated count: @currentCount</p>
+Enter the number of interations:
+
+<button class="btn btn-primary" @onclick="ComputePi">Click me</button>
+
+@code {
+    private double currentCount = 0;
+    public int Count;
+
+    private void ComputePi()
+    {
+        double n = Count, i, j;     // Number of iterations and control variables
+        double f;           // factor that repeats
+        double pi = 1;
+
+        for(i = n; i > 1; i--) {
+            f = 2;
+            for(j = 1; j < i; j++){
+                f = 2 + Math.Sqrt(f);
+            }
+            f = Math.Sqrt(f);
+            pi = pi * f / 2;
+        }
+        pi *= Math.Sqrt(2) / 2;
+        pi = 2 / pi;
+        currentCount = pi;
+
+    }
+}
